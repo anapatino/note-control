@@ -90,7 +90,7 @@ class _ListMaterialsState extends State<ListMaterials> {
                   },
                   child: Text(
                     "Eliminar",
-                    style: TextStyle(color: Colors.red),
+                    style: TextStyle(color: Colors.amber),
                   ),
                 ),
                 TextButton(
@@ -99,7 +99,7 @@ class _ListMaterialsState extends State<ListMaterials> {
                   },
                   child: Text(
                     "Cancelar",
-                    style: TextStyle(color: Colors.blue),
+                    style: TextStyle(color: Colors.black),
                   ),
                 )
               ],
