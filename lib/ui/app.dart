@@ -1,4 +1,4 @@
-import 'package:crud/ui/contenido/listar.dart';
+import 'package:crud/ui/content/List.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatelessWidget {
@@ -9,7 +9,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Crud Materias',
       theme: ThemeData(primarySwatch: Colors.amber),
-      home: const ListarMaterias(),
+      home: const ListMaterials(),
       debugShowCheckedModeBanner: false,
     );
   }
