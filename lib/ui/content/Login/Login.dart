@@ -1,8 +1,14 @@
+import 'package:crud/ui/app.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -113,24 +119,25 @@ class Login extends StatelessWidget {
                         ),
                       ]),
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          gradient: LinearGradient(colors: [
-                            Color.fromRGBO(143, 148, 251, .3),
-                            Color.fromRGBO(143, 148, 251, .6),
-                            Color.fromRGBO(143, 148, 251, .9)
-                          ])),
-                      child: Center(
-                          child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.w700),
-                      )),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const App(),
+                            ));
+                      },
+                      child: Center(child: Text("Login")),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(143, 148, 251, .9),
+                        onPrimary: Colors.white,
+                        shadowColor: Color.fromRGBO(143, 148, 251, .6),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        minimumSize: Size(20, 50),
+                        elevation: 7,
+                      ),
                     ),
                     SizedBox(
                       height: 70,
