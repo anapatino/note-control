@@ -35,6 +35,7 @@ class _ModifyState extends State<Modify> {
         title: Text("Modificar Materia"),
       ),
       body: ListView(
+        padding: const EdgeInsets.all(15.0),
         children: [
           TextBox(controlname, "Nombre"),
           TextBox(controlnote, "Nota"),

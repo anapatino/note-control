@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 class TextBox extends StatelessWidget {
   final TextEditingController controller;
   final String label;
-  TextBox(this.controller, this.label);
+  TextBox(
+    this.controller,
+    this.label,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +17,12 @@ class TextBox extends StatelessWidget {
         decoration: InputDecoration(
             filled: true,
             labelText: this.label,
-            // suffix: Icon(Icons.access_alarm),
             suffix: GestureDetector(
               child: const Icon(Icons.close),
               onTap: () {
                 controller.clear();
               },
-            )
-            //probar suffix
-            ),
+            )),
       ),
     );
   }
