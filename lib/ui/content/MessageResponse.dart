@@ -6,6 +6,6 @@ MessageResponse(BuildContext context, String name) {
       context: context,
       builder: (_) => AlertDialog(
             title: Text("Mensaje Informativo"),
-            content: Text("La Materia " + name),
+            content: Text(name),
           ));
 }

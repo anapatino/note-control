@@ -31,7 +31,7 @@ class _ListMaterialsState extends State<ListMaterials> {
                   setState(() {
                     materials.removeAt(pos);
                     materials.insert(pos, resultado);
-                    MessageResponse(context, " ha sido actualizada");
+                    MessageResponse(context, "La Materia ha sido actualizada");
                   });
                 }
               });
@@ -63,7 +63,7 @@ class _ListMaterialsState extends State<ListMaterials> {
             if (resultado != null) {
               setState(() {
                 materials.addAll(resultado);
-                MessageResponse(context, " ha sido guardada");
+                MessageResponse(context, "La Materia ha sido guardada");
               });
             }
             //Adiciona a la lista lo que recupera de la vista TextoEjercicio

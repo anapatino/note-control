@@ -1,20 +1,20 @@
 import 'package:crud/domain/model/Users.dart';
-import 'package:crud/ui/app.dart';
-import 'package:crud/ui/content/List.dart';
-import 'package:crud/ui/content/Login/Register.dart';
 import 'package:crud/ui/content/MessageResponse.dart';
 import 'package:flutter/material.dart';
+import 'package:crud/ui/app.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
+  final List<Users> listUserNew = listUsers;
   TextEditingController controlUser = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,42 +34,11 @@ class _LoginState extends State<Login> {
                 child: Stack(
                   children: [
                     Positioned(
-                      left: 30,
-                      width: 80,
-                      height: 200,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/light-1.png'))),
-                      ),
-                    ),
-                    Positioned(
-                      left: 140,
-                      width: 80,
-                      height: 150,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/light-2.png'))),
-                      ),
-                    ),
-                    Positioned(
-                      left: 350,
-                      top: 40,
-                      width: 80,
-                      height: 150,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/clock.png'))),
-                      ),
-                    ),
-                    Positioned(
                         child: Container(
                       margin: EdgeInsets.only(top: 12),
                       child: Center(
                           child: Text(
-                        "Login",
+                        "Register",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -131,12 +100,12 @@ class _LoginState extends State<Login> {
                     Builder(
                       builder: (context) => ElevatedButton(
                         onPressed: () {
-                          if (findUser(context, controlUser, controlPassword) ==
+                          if (validation(
+                                  context, controlUser, controlPassword) ==
                               true) {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => App()));
                           }
-                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(143, 148, 251, .9),
@@ -149,25 +118,7 @@ class _LoginState extends State<Login> {
                           elevation: 7,
                           padding: EdgeInsets.all(5),
                         ),
-                        child: Text('Login'),
-                      ),
-                    ),
-                    Builder(
-                      builder: (context) => Container(
-                        margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return const Register();
-                              }));
-                            },
-                            child: Text(
-                              "Forgot your password?",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(143, 148, 251, .9),
-                                  fontWeight: FontWeight.w700),
-                            )),
+                        child: Text('Save'),
                       ),
                     ),
                   ],
@@ -180,19 +131,17 @@ class _LoginState extends State<Login> {
     );
   }
 
-  findUser(BuildContext context, TextEditingController controlUser,
+  validation(BuildContext context, TextEditingController controlUser,
       TextEditingController controlPassword) {
     String user = controlUser.text;
     String password = controlPassword.text;
     if (user.isNotEmpty && password.isNotEmpty) {
+      listUserNew.add(Users(user: user, password: password));
+      MessageResponse(context, "El usuario registrado");
       for (var element in listUsers) {
-        if (element.user == user && element.password == password) {
-          return true;
-        } else {
-          MessageResponse(context, "El usuario o contraseña no es correcto");
-        }
+        print(element.user);
       }
-      ;
+      return true;
     } else {
       MessageResponse(context, "El usuario o contraseña no ha sido ingresado");
     }
