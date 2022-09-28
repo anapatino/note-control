@@ -38,7 +38,7 @@ class _RegisterState extends State<Register> {
                       margin: EdgeInsets.only(top: 12),
                       child: Center(
                           child: Text(
-                        "Register",
+                        "Create account",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -55,15 +55,6 @@ class _RegisterState extends State<Register> {
                     Container(
                       padding: EdgeInsets.all(5),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(143, 148, 251, .2),
-                                blurRadius: 20.0,
-                                offset: Offset(0, 10))
-                          ]),
                       child: Column(children: [
                         Container(
                           padding: EdgeInsets.all(8.0),
@@ -77,7 +68,7 @@ class _RegisterState extends State<Register> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "User",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
+                                hintStyle: TextStyle(color: Colors.grey[600])),
                           ),
                         ),
                         Container(
@@ -92,7 +83,7 @@ class _RegisterState extends State<Register> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
+                                hintStyle: TextStyle(color: Colors.grey[600])),
                           ),
                         ),
                       ]),

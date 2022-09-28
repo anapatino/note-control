@@ -86,17 +86,9 @@ class _LoginState extends State<Login> {
                     Container(
                       padding: EdgeInsets.all(5),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(143, 148, 251, .2),
-                                blurRadius: 20.0,
-                                offset: Offset(0, 10))
-                          ]),
                       child: Column(children: [
                         Container(
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                               border: Border(
@@ -108,11 +100,12 @@ class _LoginState extends State<Login> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "User",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
+                                hintStyle: TextStyle(color: Colors.grey[600])),
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
@@ -123,7 +116,7 @@ class _LoginState extends State<Login> {
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey[400])),
+                                hintStyle: TextStyle(color: Colors.grey[600])),
                           ),
                         ),
                       ]),
@@ -163,7 +156,7 @@ class _LoginState extends State<Login> {
                               }));
                             },
                             child: Text(
-                              "Forgot your password?",
+                              "Don't have an account?",
                               style: TextStyle(
                                   color: Color.fromRGBO(143, 148, 251, .9),
                                   fontWeight: FontWeight.w700),
