@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:crud/ui/content/TextBox.dart';
+import 'package:crud/ui/pages/TextBox.dart';
 import 'package:crud/domain/model/Materials.dart';
 
 class AddMaterial extends StatefulWidget {

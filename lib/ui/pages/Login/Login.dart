@@ -1,20 +1,20 @@
 import 'package:crud/domain/model/Users.dart';
-import 'package:crud/ui/content/MessageResponse.dart';
-import 'package:flutter/material.dart';
 import 'package:crud/ui/app.dart';
+import 'package:crud/ui/pages/List.dart';
+import 'package:crud/ui/pages/Login/Register.dart';
+import 'package:crud/ui/pages/MessageResponse.dart';
+import 'package:flutter/material.dart';
 
-class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<Login> createState() => _LoginState();
 }
 
-class _RegisterState extends State<Register> {
-  final List<Users> listUserNew = listUsers;
+class _LoginState extends State<Login> {
   TextEditingController controlUser = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,11 +34,42 @@ class _RegisterState extends State<Register> {
                 child: Stack(
                   children: [
                     Positioned(
+                      left: 30,
+                      width: 80,
+                      height: 200,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('images/light-1.png'))),
+                      ),
+                    ),
+                    Positioned(
+                      left: 140,
+                      width: 80,
+                      height: 150,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('images/light-2.png'))),
+                      ),
+                    ),
+                    Positioned(
+                      left: 350,
+                      top: 40,
+                      width: 80,
+                      height: 150,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('images/clock.png'))),
+                      ),
+                    ),
+                    Positioned(
                         child: Container(
                       margin: EdgeInsets.only(top: 12),
                       child: Center(
                           child: Text(
-                        "Create account",
+                        "Login",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 40,
@@ -57,6 +88,7 @@ class _RegisterState extends State<Register> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(children: [
                         Container(
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                               border: Border(
@@ -73,6 +105,7 @@ class _RegisterState extends State<Register> {
                         ),
                         Container(
                           padding: EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           decoration: BoxDecoration(
                               border: Border(
                                   bottom: BorderSide(
@@ -91,12 +124,12 @@ class _RegisterState extends State<Register> {
                     Builder(
                       builder: (context) => ElevatedButton(
                         onPressed: () {
-                          if (validation(
-                                  context, controlUser, controlPassword) ==
+                          if (findUser(context, controlUser, controlPassword) ==
                               true) {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => App()));
                           }
+                          ;
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(143, 148, 251, .9),
@@ -109,7 +142,25 @@ class _RegisterState extends State<Register> {
                           elevation: 7,
                           padding: EdgeInsets.all(5),
                         ),
-                        child: Text('Save'),
+                        child: Text('Login'),
+                      ),
+                    ),
+                    Builder(
+                      builder: (context) => Container(
+                        margin: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return const Register();
+                              }));
+                            },
+                            child: Text(
+                              "Don't have an account?",
+                              style: TextStyle(
+                                  color: Color.fromRGBO(143, 148, 251, .9),
+                                  fontWeight: FontWeight.w700),
+                            )),
                       ),
                     ),
                   ],
@@ -122,17 +173,19 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  validation(BuildContext context, TextEditingController controlUser,
+  findUser(BuildContext context, TextEditingController controlUser,
       TextEditingController controlPassword) {
     String user = controlUser.text;
     String password = controlPassword.text;
     if (user.isNotEmpty && password.isNotEmpty) {
-      listUserNew.add(Users(user: user, password: password));
-      MessageResponse(context, "El usuario registrado");
       for (var element in listUsers) {
-        print(element.user);
+        if (element.user == user && element.password == password) {
+          return true;
+        } else {
+          MessageResponse(context, "El usuario o contraseña no es correcto");
+        }
       }
-      return true;
+      ;
     } else {
       MessageResponse(context, "El usuario o contraseña no ha sido ingresado");
     }

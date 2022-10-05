@@ -1,8 +1,8 @@
 import 'package:crud/domain/model/Materials.dart';
-import 'package:crud/ui/content/Modify.dart';
+import 'package:crud/ui/pages/Modify.dart';
 import 'package:flutter/material.dart';
-import 'package:crud/ui/content/Add.dart';
-import 'package:crud/ui/content/MessageResponse.dart';
+import 'package:crud/ui/pages/Add.dart';
+import 'package:crud/ui/pages/MessageResponse.dart';
 
 class ListMaterials extends StatefulWidget {
   const ListMaterials({super.key});
