@@ -1,7 +1,7 @@
 import 'package:crud/domain/model/Materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:crud/ui/pages/TextBox.dart';
+import 'package:crud/ui/widgets/TextBox.dart';
 import 'package:flutter/services.dart';
 
 class Modify extends StatefulWidget {

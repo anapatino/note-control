@@ -3,6 +3,7 @@ import 'package:crud/ui/app.dart';
 import 'package:crud/ui/pages/List.dart';
 import 'package:crud/ui/pages/Login/Register.dart';
 import 'package:crud/ui/pages/MessageResponse.dart';
+import 'package:crud/ui/widgets/Input.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
@@ -33,37 +34,19 @@ class _LoginState extends State<Login> {
                         fit: BoxFit.fill)),
                 child: Stack(
                   children: [
-                    Positioned(
-                      left: 30,
-                      width: 80,
-                      height: 200,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/light-1.png'))),
-                      ),
-                    ),
-                    Positioned(
-                      left: 140,
-                      width: 80,
-                      height: 150,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/light-2.png'))),
-                      ),
-                    ),
-                    Positioned(
-                      left: 350,
-                      top: 40,
-                      width: 80,
-                      height: 150,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage('images/clock.png'))),
-                      ),
-                    ),
+                    Position(
+                        left: 30, width: 80, height: 200, image: 'light-1.png'),
+                    Position(
+                        left: 140,
+                        width: 80,
+                        height: 150,
+                        image: 'light-2.png'),
+                    Position(
+                        left: 350,
+                        top: 40,
+                        width: 80,
+                        height: 150,
+                        image: 'clock.png'),
                     Positioned(
                         child: Container(
                       margin: EdgeInsets.only(top: 12),
@@ -87,38 +70,20 @@ class _LoginState extends State<Login> {
                       padding: EdgeInsets.all(5),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(children: [
-                        Container(
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color:
-                                          Color.fromRGBO(255, 189, 189, .2)))),
-                          child: TextField(
-                            controller: controlUser,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "User",
-                                hintStyle: TextStyle(color: Colors.grey[600])),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color:
-                                          Color.fromRGBO(143, 189, 189, .2)))),
-                          child: TextField(
-                            controller: controlPassword,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey[600])),
-                          ),
-                        ),
+                        Input(
+                            controlUser,
+                            "User",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(255, 189, 189, .2),
+                            Colors.grey),
+                        Input(
+                            controlPassword,
+                            "Password",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(143, 189, 189, .2),
+                            Colors.grey),
                       ]),
                     ),
                     Builder(
@@ -129,7 +94,8 @@ class _LoginState extends State<Login> {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => App()));
                           }
-                          ;
+                          controlUser.clear();
+                          controlPassword.clear();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(143, 148, 251, .9),
@@ -177,17 +143,20 @@ class _LoginState extends State<Login> {
       TextEditingController controlPassword) {
     String user = controlUser.text;
     String password = controlPassword.text;
+    bool findUser = false;
     if (user.isNotEmpty && password.isNotEmpty) {
       for (var element in listUsers) {
         if (element.user == user && element.password == password) {
           return true;
         } else {
-          MessageResponse(context, "El usuario o contraseña no es correcto");
+          findUser = false;
         }
       }
-      ;
     } else {
       MessageResponse(context, "El usuario o contraseña no ha sido ingresado");
+    }
+    if (findUser == false) {
+      MessageResponse(context, "El usuario o contraseña no es correcto");
     }
     return false;
   }

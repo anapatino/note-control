@@ -3,6 +3,8 @@ import 'package:crud/ui/pages/MessageResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:crud/ui/app.dart';
 
+import '../../widgets/Input.dart';
+
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
@@ -56,36 +58,20 @@ class _RegisterState extends State<Register> {
                       padding: EdgeInsets.all(5),
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(children: [
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color:
-                                          Color.fromRGBO(255, 189, 189, .2)))),
-                          child: TextField(
-                            controller: controlUser,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "User",
-                                hintStyle: TextStyle(color: Colors.grey[600])),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(8.0),
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                                      color:
-                                          Color.fromRGBO(143, 189, 189, .2)))),
-                          child: TextField(
-                            controller: controlPassword,
-                            decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Password",
-                                hintStyle: TextStyle(color: Colors.grey[600])),
-                          ),
-                        ),
+                        Input(
+                            controlUser,
+                            "User",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(255, 189, 189, .2),
+                            Colors.grey),
+                        Input(
+                            controlPassword,
+                            "Password",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(143, 189, 189, .2),
+                            Colors.grey),
                       ]),
                     ),
                     Builder(
