@@ -16,6 +16,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController controlUser = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
+  TextEditingController controlName = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,6 +72,13 @@ class _LoginState extends State<Login> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(children: [
                         Input(
+                            controlName,
+                            "Name",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(255, 189, 189, .2),
+                            Colors.grey),
+                        Input(
                             controlUser,
                             "User",
                             EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -89,13 +97,18 @@ class _LoginState extends State<Login> {
                     Builder(
                       builder: (context) => ElevatedButton(
                         onPressed: () {
-                          if (findUser(context, controlUser, controlPassword) ==
+                          if (findUser(context, controlName, controlUser,
+                                  controlPassword) ==
                               true) {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => App()));
+                          } else {
+                            MessageResponse(context,
+                                "El usuario o contraseña no es correcto");
                           }
                           controlUser.clear();
                           controlPassword.clear();
+                          controlName.clear();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color.fromRGBO(143, 148, 251, .9),
@@ -139,25 +152,30 @@ class _LoginState extends State<Login> {
     );
   }
 
-  findUser(BuildContext context, TextEditingController controlUser,
+  findUser(
+      BuildContext context,
+      TextEditingController controlName,
+      TextEditingController controlUser,
       TextEditingController controlPassword) {
+    String name = controlName.text;
     String user = controlUser.text;
     String password = controlPassword.text;
     bool findUser = false;
-    if (user.isNotEmpty && password.isNotEmpty) {
+    if (user.isNotEmpty && password.isNotEmpty && name.isNotEmpty) {
       for (var element in listUsers) {
-        if (element.user == user && element.password == password) {
+        if (element.user == user &&
+            element.password == password &&
+            element.name == name) {
           return true;
         } else {
           findUser = false;
         }
       }
     } else {
-      MessageResponse(context, "El usuario o contraseña no ha sido ingresado");
+      MessageResponse(
+          context, "El nombre/usuario/contraseña no ha sido ingresado");
     }
-    if (findUser == false) {
-      MessageResponse(context, "El usuario o contraseña no es correcto");
-    }
+
     return false;
   }
 }

@@ -16,6 +16,7 @@ class _RegisterState extends State<Register> {
   final List<Users> listUserNew = listUsers;
   TextEditingController controlUser = TextEditingController();
   TextEditingController controlPassword = TextEditingController();
+  TextEditingController controlName = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,13 @@ class _RegisterState extends State<Register> {
                       margin: const EdgeInsets.fromLTRB(0, 0, 0, 40),
                       child: Column(children: [
                         Input(
+                            controlName,
+                            "Name",
+                            EdgeInsets.fromLTRB(0, 0, 0, 10),
+                            EdgeInsets.all(8.0),
+                            Color.fromRGBO(255, 189, 189, .2),
+                            Colors.grey),
+                        Input(
                             controlUser,
                             "User",
                             EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -77,8 +85,8 @@ class _RegisterState extends State<Register> {
                     Builder(
                       builder: (context) => ElevatedButton(
                         onPressed: () {
-                          if (validation(
-                                  context, controlUser, controlPassword) ==
+                          if (validation(context, controlName, controlUser,
+                                  controlPassword) ==
                               true) {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => App()));
@@ -108,12 +116,16 @@ class _RegisterState extends State<Register> {
     );
   }
 
-  validation(BuildContext context, TextEditingController controlUser,
+  validation(
+      BuildContext context,
+      TextEditingController controlName,
+      TextEditingController controlUser,
       TextEditingController controlPassword) {
+    String name = controlName.text;
     String user = controlUser.text;
     String password = controlPassword.text;
-    if (user.isNotEmpty && password.isNotEmpty) {
-      listUserNew.add(Users(user: user, password: password));
+    if (user.isNotEmpty && password.isNotEmpty && name.isNotEmpty) {
+      listUserNew.add(Users(name: name, user: user, password: password));
       MessageResponse(context, "El usuario registrado");
       for (var element in listUsers) {
         print(element.user);
